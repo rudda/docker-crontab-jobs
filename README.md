@@ -23,6 +23,8 @@ in order to create it, we can just to passing these args by enviroment variables
         - COMMAND=node --version 
     ´´´
 
+There's a full [docker-compose sample here](docker-compose.yml)
+
 [The entrypoint.sh file](entrypoint.sh) is responsable for call [setup.crontab.py python script](setup.crontab.py) and create
 the crontab file. After crontab file is created then the cron job service is started by command 
     cron -f
