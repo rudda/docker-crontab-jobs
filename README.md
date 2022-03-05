@@ -16,12 +16,12 @@ A cron job has the following definition:
 keeping it in mind, we have the following pattern <schedule-time> <user-name> <command-to-be-executed>
 in order to create it, we can just to passing these args by enviroment variables as follow:
 
-´´´
- environment:
-      - USER_NAME=root
-      - TASK_SCHEDULE=* * * * *
-      - COMMAND=node --version 
-´´´
+    ´´´
+    environment:
+        - USER_NAME=root
+        - TASK_SCHEDULE=* * * * *
+        - COMMAND=node --version 
+    ´´´
 
 [The entrypoint.sh file](entrypoint.sh) is responsable for call [setup.crontab.py python script](setup.crontab.py) and create
 the crontab file. After crontab file is created then the cron job service is started by command 
@@ -31,3 +31,10 @@ the crontab file. After crontab file is created then the cron job service is sta
 
 * env >> /etc/environment : the cron jobs not recognize the env variables so this line is very important before call cron -f
 * There's a mandatory blank line in the end of crontab file
+
+## Running by docker command line
+
+    docker build -t <docker-custom-image-name-here> .
+
+    docker run -it -e USER_NAME="root" -e TASK_SCHEDULE="* * * * *" -e COMMAND="node --version"  <docker-custom-image-name-here>
+
